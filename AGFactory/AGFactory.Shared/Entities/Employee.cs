@@ -25,7 +25,7 @@ public class Employee
     public bool IsActive { get; set; }
 
     [Display(Name = "Fecha contratacion")]
-    public DateTime HireDate { get; set; }
+    public DateTime HireDate { get; set; } = DateTime.Now;
 
     [Display(Name = "Salario")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
