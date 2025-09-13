@@ -1,4 +1,8 @@
 using AGFactory.Backend.Data;
+using AGFactory.Backend.Repositories.Implementations;
+using AGFactory.Backend.Repositories.Interfaces;
+using AGFactory.Backend.UnitsOfWork.Implementations;
+using AGFactory.Backend.UnitsOfWork.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace AGFactory.Backend
@@ -16,6 +20,9 @@ namespace AGFactory.Backend
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
+
+            builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             var app = builder.Build();
 
