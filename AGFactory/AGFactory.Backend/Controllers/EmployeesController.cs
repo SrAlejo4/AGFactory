@@ -9,8 +9,22 @@ namespace AGFactory.Backend.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : GenericController<Employee>
     {
-        public EmployeesController(IGenericUnitOfWork<Employee> unit) : base(unit)
+        private readonly IEmployeesUnitOfWork _employeesUnitOfWork;
+
+        public EmployeesController(IGenericUnitOfWork<Employee> unitOfWork, IEmployeesUnitOfWork employeesUnitOfWork) : base(unitOfWork)
         {
+            _employeesUnitOfWork = employeesUnitOfWork;
+        }
+
+        [HttpGet("search/{search}")]
+        public async Task<IActionResult> GetByNameLastName(string search)
+        {
+            var action = await _employeesUnitOfWork.GetByNameLastNameAsync(search);
+            if (action.WasSuccess)
+            {
+                return Ok(action.Result);
+            }
+            return NotFound();
         }
     }
 }
