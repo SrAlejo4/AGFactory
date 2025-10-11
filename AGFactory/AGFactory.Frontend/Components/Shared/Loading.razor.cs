@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace AGFactory.Frontend.Components.Pages.Shared;
+namespace AGFactory.Frontend.Components.Shared;
 
 public partial class Loading
 {

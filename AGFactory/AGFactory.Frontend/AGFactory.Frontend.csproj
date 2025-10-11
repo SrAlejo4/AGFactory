@@ -14,6 +14,11 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\AGFactory.Shared\AGFactory.Shared.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <Content Update="wwwroot\Images\question.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
