@@ -1,5 +1,6 @@
 ﻿using AGFactory.Backend.Repositories.Interfaces;
 using AGFactory.Backend.UnitsOfWork.Interface;
+using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Entities;
 using AGFactory.Shared.Responses;
 using System.Diagnostics.Metrics;
@@ -15,5 +16,12 @@ public class EmployeesUnitOfWork : GenericUnitOfWork<Employee>, IEmployeesUnitOf
         _employeesRepository = employeesRepository;
     }
 
-    public async Task<ActionResponse<IEnumerable<Employee>>> GetByNameLastNameAsync(string search) => await _employeesRepository.GetByNameLastNameAsync(search);
+    public override async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+        => await _employeesRepository.GetTotalRecordsAsync(pagination);
+
+    public override async Task<ActionResponse<IEnumerable<Employee>>> GetAsync(PaginationDTO pagination)
+        => await _employeesRepository.GetAsync(pagination);
+
+    public async Task<ActionResponse<IEnumerable<Employee>>> GetByNameLastNameAsync(string search)
+        => await _employeesRepository.GetByNameLastNameAsync(search);
 }

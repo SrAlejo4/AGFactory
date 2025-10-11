@@ -1,5 +1,7 @@
 ﻿using AGFactory.Backend.Data;
+using AGFactory.Backend.Helpers;
 using AGFactory.Backend.Repositories.Interfaces;
+using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Responses;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,30 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         _context = context;
         _entity = context.Set<T>();
+    }
+
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+
+        return new ActionResponse<IEnumerable<T>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+            .Paginate(pagination)
+            .ToListAsync()
+        };
+    }
+
+    public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 
     public virtual async Task<ActionResponse<T>> AddAsync(T entity)

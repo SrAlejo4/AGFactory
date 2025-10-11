@@ -1,5 +1,6 @@
 ﻿using AGFactory.Backend.Repositories.Interfaces;
 using AGFactory.Backend.UnitsOfWork.Interface;
+using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Responses;
 
 namespace AGFactory.Backend.UnitsOfWork.Implementations;
@@ -12,6 +13,12 @@ public class GenericUnitOfWork<T> : IGenericUnitOfWork<T> where T : class
     {
         _repository = repository;
     }
+
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination)
+        => await _repository.GetAsync(pagination);
+
+    public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+        => await _repository.GetTotalRecordsAsync(pagination);
 
     public virtual async Task<ActionResponse<T>> AddAsync(T model) => await _repository.AddAsync(model);
 
