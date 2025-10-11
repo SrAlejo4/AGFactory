@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGFactory.Backend", "AGFactory.Backend\AGFactory.Backend.csproj", "{0DA37B10-E94D-4FE9-8658-8F45BE0DFF3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGFactory.Shared", "AGFactory.Shared\AGFactory.Shared.csproj", "{EADE97A8-60E8-4DC3-9615-39429EC53A98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGFactory.Frontend", "AGFactory.Frontend\AGFactory.Frontend.csproj", "{DE46FA42-09B2-4E4D-A8F7-0FBF37254877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EADE97A8-60E8-4DC3-9615-39429EC53A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EADE97A8-60E8-4DC3-9615-39429EC53A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EADE97A8-60E8-4DC3-9615-39429EC53A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE46FA42-09B2-4E4D-A8F7-0FBF37254877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE46FA42-09B2-4E4D-A8F7-0FBF37254877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE46FA42-09B2-4E4D-A8F7-0FBF37254877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE46FA42-09B2-4E4D-A8F7-0FBF37254877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
