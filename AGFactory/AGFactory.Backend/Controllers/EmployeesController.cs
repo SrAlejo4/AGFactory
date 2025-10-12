@@ -38,16 +38,5 @@ namespace AGFactory.Backend.Controllers
             }
             return BadRequest();
         }
-
-        [HttpGet("search/{search}")]
-        public async Task<IActionResult> GetByNameLastName(string search)
-        {
-            var action = await _employeesUnitOfWork.GetByNameLastNameAsync(search);
-            if (action.WasSuccess)
-            {
-                return Ok(action.Result);
-            }
-            return NotFound();
-        }
     }
 }

@@ -15,11 +15,15 @@
                   Required="true"
                   Class="mb-4" />
 
-    <MudRadioGroup T="bool" @bind-SelectedValue="Employee.IsActive" Row="true" Class="mb-4">
-        <MudRadio T="bool" Value="true">Activo</MudRadio>
-        <MudRadio T="bool" Value="false">Inactivo</MudRadio>
-    </MudRadioGroup>
-
+    <MudSelect T="bool"
+           Label="Estado"
+           @bind-Value="Employee.IsActive"
+           For="@(() => Employee.IsActive)"
+           Required="true"
+           Class="mb-4">
+    <MudSelectItem Value="true">Activo</MudSelectItem>
+    <MudSelectItem Value="false">Inactivo</MudSelectItem>
+</MudSelect>
 
     <MudDatePicker T="DateTime?"
                    Label="Fecha de Contratación"
@@ -35,7 +39,6 @@
                      @bind-Value="Employee.Salary"
                      For="@(() => Employee.Salary)"
                      Required="true"
-                     Step="100000"
                      Class="mb-4"
                      Adornment="Adornment.Start"
                      AdornmentText="$" />
@@ -43,7 +46,7 @@
     <MudButton Variant="Variant.Outlined"
                StartIcon="@Icons.Material.Filled.ArrowBack"
                Color="Color.Info"
-               OnClick="@(async () => await ReturnAction.InvokeAsync())">
+               OnClick="ReturnAction">
         <MudHidden xs="true">
             Cancelar
         </MudHidden>
