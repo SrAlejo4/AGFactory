@@ -11,12 +11,12 @@ public class Employee
 {
     public int Id { get; set; }
 
-    [Display(Name = "Primer nombre")]
+    [Display(Name = "Nombre")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
     [MaxLength(30, ErrorMessage = "El campo {0} no puede tener más de {1}" + "carácteres.")]
     public string FirstName { get; set; } = null!;
 
-    [Display(Name = "Segundo Nombre")]
+    [Display(Name = "Apellido")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
     [MaxLength(30, ErrorMessage = "El campo {0} no puede tener más de {1}" + "carácteres.")]
     public string LastName { get; set; } = null!;
@@ -25,7 +25,7 @@ public class Employee
     public bool IsActive { get; set; }
 
     [Display(Name = "Fecha contratacion")]
-    public DateTime HireDate { get; set; } = DateTime.Now;
+    public DateTime? HireDate { get; set; }
 
     [Display(Name = "Salario")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]

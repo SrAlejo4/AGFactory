@@ -1,0 +1,60 @@
+﻿<EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    
+    <MudTextField T="string"
+                  Label="Nombre"
+                  @bind-Value="Employee.FirstName"
+                  For="@(() => Employee.FirstName)"
+                  Required="true"
+                  Class="mb-4" />
+
+    <MudTextField T="string"
+                  Label="Apellido"
+                  @bind-Value="Employee.LastName"
+                  For="@(() => Employee.LastName)"
+                  Required="true"
+                  Class="mb-4" />
+
+    <MudRadioGroup T="bool" @bind-SelectedValue="Employee.IsActive" Row="true" Class="mb-4">
+        <MudRadio T="bool" Value="true">Activo</MudRadio>
+        <MudRadio T="bool" Value="false">Inactivo</MudRadio>
+    </MudRadioGroup>
+
+
+    <MudDatePicker T="DateTime?"
+                   Label="Fecha de Contratación"
+                   @bind-Date="Employee.HireDate"
+                   For="@(() => Employee.HireDate)"
+                   DateFormat="dd/MM/yyyy"
+                   MaxDate="@DateTime.Today"
+                   PickerVariant="PickerVariant.Dialog"
+                   Class="mb-4" />
+
+    <MudNumericField T="decimal"
+                     Label="Salario"
+                     @bind-Value="Employee.Salary"
+                     For="@(() => Employee.Salary)"
+                     Required="true"
+                     Step="100000"
+                     Class="mb-4"
+                     Adornment="Adornment.Start"
+                     AdornmentText="$" />
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.ArrowBack"
+               Color="Color.Info"
+               OnClick="@(async () => await ReturnAction.InvokeAsync())">
+        <MudHidden xs="true">
+            Cancelar
+        </MudHidden>
+    </MudButton>
+
+    <MudButton Variant="Variant.Outlined"
+               StartIcon="@Icons.Material.Filled.Check"
+               Color="Color.Primary"
+               ButtonType="ButtonType.Submit">
+        <MudHidden xs="true">
+            Guardar Cambios
+        </MudHidden>
+    </MudButton>
+</EditForm>

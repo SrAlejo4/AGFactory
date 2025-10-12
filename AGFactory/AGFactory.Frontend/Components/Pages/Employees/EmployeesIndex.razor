@@ -29,7 +29,7 @@ else
         </ToolBarContent>
 
         <HeaderContent>
-            <MudTh>Primer Nombre</MudTh>
+            <MudTh>Nombre</MudTh>
             <MudTh>Apellido</MudTh>
             <MudTh>Activo</MudTh>
             <MudTh>Fecha de Contratación</MudTh>
@@ -41,7 +41,7 @@ else
             <MudTd>@context.FirstName</MudTd>
             <MudTd>@context.LastName</MudTd>
             <MudTd>@(context.IsActive ? "Activo" : "Inactivo")</MudTd>
-            <MudTd>@context.HireDate.ToString("dd/MM/yyyy")</MudTd>
+            <MudTd>@context.HireDate?.ToString("dd/MM/yyyy")</MudTd>
             <MudTd>@string.Format("{0:C0}", context.Salary)</MudTd>
             <MudTd>
                 <MudTooltip Text="Editar">
