@@ -26,8 +26,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             WasSuccess = true,
             Result = await queryable
-            .Paginate(pagination)
-            .ToListAsync()
+                .Paginate(pagination)
+                .ToListAsync()
         };
     }
 
@@ -60,7 +60,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         }
         catch (Exception exception)
         {
-            return ExceptionActionResponse(exception);
+            return ExceptionActionRespose(exception);
         }
     }
 
@@ -71,26 +71,24 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             return new ActionResponse<T>
             {
-                WasSuccess = false,
                 Message = "Registro no encontrado"
             };
         }
+        _entity.Remove(row);
 
         try
         {
-            _entity.Remove(row);
             await _context.SaveChangesAsync();
             return new ActionResponse<T>
             {
-                WasSuccess = true,
+                WasSuccess = true
             };
         }
         catch
         {
             return new ActionResponse<T>
             {
-                WasSuccess = false,
-                Message = "No se puede borrar, porque tiene registros relacionados"
+                Message = "No se puede borrar porque tiene registros relacionados."
             };
         }
     }
@@ -98,35 +96,31 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public virtual async Task<ActionResponse<T>> GetAsync(int id)
     {
         var row = await _entity.FindAsync(id);
-        if (row != null)
+        if (row == null)
         {
             return new ActionResponse<T>
             {
-                WasSuccess = true,
-                Result = row
+                Message = "Registro no encontrado"
             };
         }
         return new ActionResponse<T>
         {
-            WasSuccess = false,
-            Message = "Registro no encontrado"
+            WasSuccess = true,
+            Result = row
         };
     }
 
-    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync()
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync() => new ActionResponse<IEnumerable<T>>
     {
-        return new ActionResponse<IEnumerable<T>>
-        {
-            WasSuccess = true,
-            Result = await _entity.ToListAsync()
-        };
-    }
+        WasSuccess = true,
+        Result = await _entity.ToListAsync()
+    };
 
     public virtual async Task<ActionResponse<T>> UpdateAsync(T entity)
     {
+        _context.Update(entity);
         try
         {
-            _context.Update(entity);
             await _context.SaveChangesAsync();
             return new ActionResponse<T>
             {
@@ -140,25 +134,17 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         }
         catch (Exception exception)
         {
-            return ExceptionActionResponse(exception);
+            return ExceptionActionRespose(exception);
         }
     }
 
-    private ActionResponse<T> ExceptionActionResponse(Exception exception)
+    private ActionResponse<T> ExceptionActionRespose(Exception exception) => new ActionResponse<T>
     {
-        return new ActionResponse<T>
-        {
-            WasSuccess = false,
-            Message = exception.Message
-        };
-    }
+        Message = exception.Message
+    };
 
-    private ActionResponse<T> DbUpdateExceptionActionResponse()
+    private ActionResponse<T> DbUpdateExceptionActionResponse() => new ActionResponse<T>
     {
-        return new ActionResponse<T>
-        {
-            WasSuccess = false,
-            Message = "Ya existe el registro que estas intentando crear."
-        };
-    }
+        Message = "Ya existe el registro."
+    };
 }

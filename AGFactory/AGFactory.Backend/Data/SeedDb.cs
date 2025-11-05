@@ -1,6 +1,4 @@
-﻿using AGFactory.Shared.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace AGFactory.Backend.Data;
 
@@ -17,6 +15,16 @@ public class SeedDb
     {
         await _context.Database.EnsureCreatedAsync();
         await CheckEmployeesFullAsync();
+        await CheckCountriesFullAsync();
+    }
+
+    private async Task CheckCountriesFullAsync()
+    {
+        if (!_context.Countries.Any())
+        {
+            var countriesSQLScript = File.ReadAllText("Data\\CountriesStatesCities.sql");
+            await _context.Database.ExecuteSqlRawAsync(countriesSQLScript);
+        }
     }
 
     private async Task CheckEmployeesFullAsync()
