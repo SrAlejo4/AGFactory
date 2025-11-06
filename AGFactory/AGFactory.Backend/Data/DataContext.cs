@@ -1,9 +1,10 @@
 ﻿using AGFactory.Shared.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AGFactory.Backend.Data;
 
-public class DataContext : DbContext
+public class DataContext : IdentityDbContext<User>
 {
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
@@ -11,8 +12,8 @@ public class DataContext : DbContext
 
     public DbSet<City> Cities { get; set; }
     public DbSet<Country> Countries { get; set; }
-    public DbSet<State> States { get; set; }
     public DbSet<Employee> Employees { get; set; }
+    public DbSet<State> States { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
