@@ -1,6 +1,7 @@
 using AGFactory.Frontend.Components.Shared;
 using AGFactory.Frontend.Repositories;
 using AGFactory.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Diagnostics.Metrics;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace AGFactory.Frontend.Components.Pages.Employees;
 
+[Authorize(Roles = "Admin")]
 public partial class EmployeesIndex
 {
     private List<Employee>? Employees { get; set; }

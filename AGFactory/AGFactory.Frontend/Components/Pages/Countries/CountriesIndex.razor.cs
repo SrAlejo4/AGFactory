@@ -1,12 +1,14 @@
 using AGFactory.Frontend.Components.Shared;
 using AGFactory.Frontend.Repositories;
 using AGFactory.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Net;
 
 namespace AGFactory.Frontend.Components.Pages.Countries;
 
+[Authorize(Roles = "Admin")]
 public partial class CountriesIndex
 {
     private List<Country>? Countries { get; set; }
