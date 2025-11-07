@@ -1,11 +1,12 @@
-﻿using AGFactory.Shared.Entities;
+﻿using AGFactory.Shared.DTOs;
+using AGFactory.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace AGFactory.Backend.UnitsOfWork.Interface;
 
 public interface IUsersUnitOfWork
 {
-    //Task<SignInResult> LoginAsync(LoginDTO model);
+    Task<SignInResult> LoginAsync(LoginDTO model);
 
     Task LogoutAsync();
 

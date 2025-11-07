@@ -1,12 +1,15 @@
 ﻿using AGFactory.Backend.UnitsOfWork.Interface;
 using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Metrics;
 
 namespace AGFactory.Backend.Controllers
 {
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class EmployeesController : GenericController<Employee>
     {

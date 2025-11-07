@@ -1,5 +1,6 @@
 ﻿using AGFactory.Backend.Repositories.Interfaces;
 using AGFactory.Backend.UnitsOfWork.Interface;
+using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,7 +15,7 @@ public class UsersUnitOfWork : IUsersUnitOfWork
         _usersRepository = usersRepository;
     }
 
-    //public async Task<SignInResult> LoginAsync(LoginDTO model) => await _usersRepository.LoginAsync(model);
+    public async Task<SignInResult> LoginAsync(LoginDTO model) => await _usersRepository.LoginAsync(model);
 
     public async Task LogoutAsync() => await _usersRepository.LogoutAsync();
 

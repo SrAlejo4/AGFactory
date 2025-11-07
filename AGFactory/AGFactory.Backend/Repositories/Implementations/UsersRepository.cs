@@ -1,5 +1,6 @@
 ﻿using AGFactory.Backend.Data;
 using AGFactory.Backend.Repositories.Interfaces;
+using AGFactory.Shared.DTOs;
 using AGFactory.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +22,10 @@ public class UsersRepository : IUsersRepository
         _signInManager = signInManager;
     }
 
-    /*public async Task<SignInResult> LoginAsync(LoginDTO model)
+    public async Task<SignInResult> LoginAsync(LoginDTO model)
     {
         return await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-    }*/
+    }
 
     public async Task LogoutAsync()
     {
